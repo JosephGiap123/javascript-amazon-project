@@ -1,4 +1,4 @@
-const products = [
+/*const products = [
 	{
 		name: 'Black and Gray Athletic Cotton Socks - 6 Pairs',
 		image: 'images/products/athletic-cotton-socks-6-pairs.jpg',
@@ -25,8 +25,20 @@ const products = [
 			count: 56
 		},
 		priceCents: 799
+	},
+	{
+		name: '2 Slot Toaster - Black',
+		image: 'images/products/black-2-slot-toaster.jpg',
+		rating: {
+			stars: 5,
+			count: 2197
+		},
+		priceCents: 1899
 	}
-];
+];*/
+
+//code starts here above is the testing
+
 
 let productsHTML = '';
 
