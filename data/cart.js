@@ -9,4 +9,23 @@
 3. import */
 export const cart = [];
 
+export function addToCart(productId){
+	const quantityAdd = Number(document.querySelector(`.js-select-${productId}-value`).value);
+	let matchingItem;
+	cart.forEach((cartItem)=>{
+			if(productId === cartItem.productId){
+				matchingItem = cartItem;
+			}
+		}
+	);
 
+	if(matchingItem){
+		matchingItem.quantity += quantityAdd;
+	}
+	else{
+		cart.push({
+			productId: productId,
+			quantity: quantityAdd
+		});
+	}
+};
