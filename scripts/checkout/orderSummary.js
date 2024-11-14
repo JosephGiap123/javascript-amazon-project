@@ -115,9 +115,10 @@ export function renderOrderSummary(){
 			const productId = link.dataset.productId;
 			removeFromCart(productId);
 
-			const container = document.querySelector(`.js-cart-item-container-${productId}`);
+			/*const container = document.querySelector(`.js-cart-item-container-${productId}`);
 			console.log(container);
-			container.remove();
+			container.remove();*/
+			renderOrderSummary();
 			renderPaymentSummary();
 		});
 	});
