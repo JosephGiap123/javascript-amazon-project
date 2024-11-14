@@ -1,4 +1,4 @@
-import {formatCurrency} from "../scripts/utils/money.js";
+import {formatCurrency} from "../../scripts/utils/money.js";
 
 describe('test suite: formatCurrency', ()=>{
 	it('converts cents into dollars', ()=>{
@@ -10,4 +10,5 @@ describe('test suite: formatCurrency', ()=>{
 	it('rounds up', ()=>{
 		expect(formatCurrency(2000.5)).toEqual('20.01'); //just checks if format currecny 2095 = 20.95 read jasmine like english
 	});
+	
 });
