@@ -3,12 +3,8 @@ import {products, getProduct} from '../../data/products.js';
 import formatCurrency from '../utils/money.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js'; //default export, when you wanna only export 1 thing.
 import { deliveryOptions, getDeliveryOption } from '../../data/deliveryOptions.js';
+import { renderPaymentSummary } from './paymentSummary.js';
 
-/*hello();
-const today = dayjs();
-const deliveryDate = today.add(7, 'days');
-console.log(deliveryDate.format('dddd, MMMM D'))
-*/
 
 export function renderOrderSummary(){
 	let cartSummaryHTML = '';
@@ -29,7 +25,7 @@ export function renderOrderSummary(){
 		const deliveryOptionId = cartItem.deliveryOptionId;
 
 		const deliveryOption = getDeliveryOption(deliveryOptionId);
-		
+
 		const today = dayjs();
 		const deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
 
@@ -122,7 +118,7 @@ export function renderOrderSummary(){
 			const container = document.querySelector(`.js-cart-item-container-${productId}`);
 			console.log(container);
 			container.remove();
-
+			renderPaymentSummary();
 		});
 	});
 
@@ -131,6 +127,7 @@ export function renderOrderSummary(){
 			const {productId, deliveryOptionId} = element.dataset; //shorthand.
 			updateDeliveryOption(productId, deliveryOptionId);
 			renderOrderSummary(); //reload page essentially
+			renderPaymentSummary();
 		})
 	});
 
