@@ -7,10 +7,11 @@
 1. add type = "module" lets files get vars out of other files
 2. export
 3. import */
-export let cart = JSON.parse(localStorage.getItem('cart')) || []; //its still a string.
+export let cart;
+loadFromStorage();
 
 export function addToCart(productId){
-	const quantityAdd = Number(document.querySelector(`.js-select-${productId}-value`).value);
+	//const quantityAdd = Number(document.querySelector(`.js-select-${productId}-value`).value);
 	let matchingItem;
 	cart.forEach((cartItem)=>{
 			if(productId === cartItem.productId){
@@ -20,17 +21,24 @@ export function addToCart(productId){
 	);
 
 	if(matchingItem){
-		matchingItem.quantity += quantityAdd;
+		//matchingItem.quantity += quantityAdd;
+		matchingItem.quantity += 1;
 	}
 	else{
 		cart.push({
 			productId: productId,
-			quantity: quantityAdd,
+			//quantity: quantityAdd,
+			quantity: 1,
 			deliveryOptionId: '1'
 		});
 	}
 	saveToStorage(cart);
 };
+
+export function loadFromStorage(){
+	cart = JSON.parse(localStorage.getItem('cart')) || []; 
+
+}
 
 function saveToStorage(){
 	localStorage.setItem('cart', JSON.stringify(cart)); //2 parameter, name, data wanted to save, can only save strings.
