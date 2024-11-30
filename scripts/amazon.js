@@ -42,6 +42,8 @@ products.forEach((productObject)=> {
 				</select>
 			</div>
 
+			${productObject.extraInfoHTML()}
+
 			<div class="product-spacer"></div>
 
 			<div class="added-to-cart">
