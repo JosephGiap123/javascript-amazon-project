@@ -53,6 +53,38 @@ class Clothing extends Product{
   }
 } //clothing child of product
 
+/*
+const date = new Date();
+console.log(date);
+console.log(date.toLocaleTimeString()); //gives time.
+
+
+console.log(this); //this will be undefined when in a module.
+
+const object2 = {
+  a: 2,
+  //b: this.a //object2 not created yet, will be undefined!
+
+};
+
+console.log(object2);*/
+/*
+function logThis(){
+  console.log(this);
+};
+logThis();
+logThis.call('hello'); //.call runs the function, except this can be set to whatever.
+
+//arrow functions do not change the value of this.
+
+const object3 = {
+  method: () =>{
+    console.log(this);
+  }
+};
+
+object3.method(); //undefined, arrow functions keep value of 'this' outside of the arrow function.
+*/
 
 export const products = [
   {
@@ -719,3 +751,4 @@ export const products = [
   }
   return new Product(productDetails);
 });
+
