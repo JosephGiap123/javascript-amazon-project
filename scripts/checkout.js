@@ -10,6 +10,25 @@ import { loadCart } from "../data/cart.js";
 
 //import '../data/cart-classes.js';
 
+async function loadPage(){
+	await loadProductsFetch();
+
+	const value = await new Promise((resolve)=>{
+		loadCart(()=>{
+			resolve('value2');
+		});
+	});
+	console.log(value);
+	renderOrderSummary();
+	renderPaymentSummary();
+}
+
+loadPage();
+// async = promise, just easier than saying new promise() ...
+// await = wait for a promise to finish before continuing to next line. ONLY USABLE INSIDE ASYNC FUNC.
+
+/*
+V3
 Promise.all([
 	loadProductsFetch(),
 	new Promise((resolve)=>{
@@ -22,9 +41,10 @@ Promise.all([
 	renderOrderSummary();
 	renderPaymentSummary();
 });
-
+*/
 
 /*
+V2
 new Promise((resolve)=>{
 	loadProducts(()=>{
 		resolve('value1');
@@ -45,6 +65,7 @@ return new Promise((resolve)=>{
 //promise = built in class given a function. runs IMMEDIATELY. resolve function controls when to go into next step! promises create a new thread, allowing for multiple things to happen at once! the next step after resolve is .then().
 
 /*
+V1
 loadProducts(()=>{
 	loadCart(()=>{
 		renderOrderSummary();
