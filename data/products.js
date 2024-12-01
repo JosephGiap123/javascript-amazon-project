@@ -88,12 +88,36 @@ object3.method(); //undefined, arrow functions keep value of 'this' outside of t
 
 export let products = [];
 
+export function loadProductsFetch(){
+  const promise = fetch('https://supersimplebackend.dev/products').then((response)=>{
+    return response.json(); 
+  }).then((productsData)=>{
+    products = productsData.map((productDetails)=>{
+      if(productDetails.type === "clothing"){
+        return new Clothing(productDetails);
+      }
+      return new Product(productDetails);
+    });
+  }); 
+
+  return promise;
+}
+
+//fetch same as xhr.open('get', blah blah.);
+// response.json is ASYNC code! its a promise get the JSON data.
+//response.json already converts it into java script objects! no need to parse.
+
+/*
+loadProductsFetch().then(()=>{
+  console.log('next step');
+});
+*/
+
 export function loadProducts(fun){
   const xhr = new XMLHttpRequest();
 
   xhr.addEventListener('load', ()=>{
-    products = JSON.parse(xhr.response);
-    products = products.map((productDetails)=>{
+    products = JSON.parse(xhr.response).map((productDetails)=>{
       if(productDetails.type === "clothing"){
         return new Clothing(productDetails);
       }
