@@ -86,6 +86,29 @@ const object3 = {
 object3.method(); //undefined, arrow functions keep value of 'this' outside of the arrow function.
 */
 
+export let products = [];
+
+export function loadProducts(fun){
+  const xhr = new XMLHttpRequest();
+
+  xhr.addEventListener('load', ()=>{
+    products = JSON.parse(xhr.response);
+    products = products.map((productDetails)=>{
+      if(productDetails.type === "clothing"){
+        return new Clothing(productDetails);
+      }
+      return new Product(productDetails);
+    });
+    console.log('load products');
+    fun();
+  });
+
+  xhr.open('GET', 'https://supersimplebackend.dev/products');
+  xhr.send();
+}; //the fun part is a callback, where a function is to be called back in the future. setTimeout also known as a call back!
+
+
+/* code commented out to create products using backend!
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -751,4 +774,4 @@ export const products = [
   }
   return new Product(productDetails);
 });
-
+*/
