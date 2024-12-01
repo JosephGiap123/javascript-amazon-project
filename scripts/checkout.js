@@ -11,19 +11,24 @@ import { loadCart } from "../data/cart.js";
 //import '../data/cart-classes.js';
 
 async function loadPage(){
-	await loadProductsFetch();
-
-	const value = await new Promise((resolve)=>{
-		loadCart(()=>{
-			resolve('value2');
+	try{
+		await loadProductsFetch();
+		const value = await new Promise((resolve, reject)=>{
+			loadCart(()=>{
+				//reject('error3');
+				resolve();
+			});
 		});
-	});
-	console.log(value);
+	}	catch(error){
+		console.log('Unexpected error. Please try again later');
+	}
 	renderOrderSummary();
 	renderPaymentSummary();
 }
 
 loadPage();
+
+//throws do not work in the future, use reject instead. This is mostly used in promises instead of resolve.
 // async = promise, just easier than saying new promise() ...
 // await = wait for a promise to finish before continuing to next line. ONLY USABLE INSIDE ASYNC FUNC.
 

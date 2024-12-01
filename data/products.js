@@ -98,10 +98,14 @@ export function loadProductsFetch(){
       }
       return new Product(productDetails);
     });
+  }).catch((error)=>{
+    console.log('Unexpected error. Please try again later.');
   }); 
 
   return promise;
 }
+
+loadProductsFetch();
 
 //fetch same as xhr.open('get', blah blah.);
 // response.json is ASYNC code! its a promise get the JSON data.
@@ -123,13 +127,22 @@ export function loadProducts(fun){
       }
       return new Product(productDetails);
     });
+
     console.log('load products');
+
     fun();
+  });
+
+  xhr.addEventListener('error', (error)=>{
+    console.log('Unexpected error. Please try again later.');
   });
 
   xhr.open('GET', 'https://supersimplebackend.dev/products');
   xhr.send();
-}; //the fun part is a callback, where a function is to be called back in the future. setTimeout also known as a call back!
+}; 
+
+
+//the fun part is a callback, where a function is to be called back in the future. setTimeout also known as a call back!
 
 
 /* code commented out to create products using backend!
